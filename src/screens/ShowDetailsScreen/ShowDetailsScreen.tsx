@@ -10,6 +10,7 @@ import {QueryKeys} from '../../services/QueryKeys';
 import {showService} from '../../services/show/showService';
 import {colors} from '../../styles/colors';
 import {commonUtils} from '../../utils/commonUtils';
+import {Genres} from './components/Genres/Genres';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
 
@@ -43,6 +44,7 @@ export function ShowDetailsScreen({route}: ScreenProps) {
         <Text style={styles.title}>{show.name}</Text>
         <DaysOfWeekIndicator days={show.schedule.days} />
         <Text style={styles.timeText}>Time: {show.schedule.time}</Text>
+        <Genres genres={show.genres} />
       </View>
     </ScreenTemplate>
   );
