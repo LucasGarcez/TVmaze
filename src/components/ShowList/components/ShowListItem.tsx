@@ -1,25 +1,34 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {View, Image, Text, StyleSheet} from 'react-native';
+import {View, Image, Text, StyleSheet, Pressable} from 'react-native';
 
 import {Show} from '../../../models/ShowModel';
 import {colors} from '../../../styles/colors';
+import {commonUtils} from '../../../utils/commonUtils';
 import {stylesUtils} from '../../../utils/styleUtils';
 
-const imagePlaceholder = require('../../../assets/images/image-placeholder.png');
+export function ShowListItem(show: Show) {
+  const {image, name, rating} = show;
+  const navigation = useNavigation();
 
-export function ShowListItem({image, name, rating}: Show) {
-  console.log(`${name}: ${image?.medium}`);
-  const imageUrl = image?.medium ? {uri: image.medium} : imagePlaceholder;
+  const imageSource = commonUtils.getImageSource(image);
+
+  function navigateToShowDetails() {
+    //TODO: type check navigation
+    navigation.navigate('ShowDetails', {show});
+  }
   return (
     <View style={stylesUtils.shadow}>
-      <View style={styles.container}>
-        <Image source={imageUrl} style={styles.image} />
+      <Pressable onPress={navigateToShowDetails} style={styles.container}>
+        <Image source={imageSource} style={styles.image} />
 
         <View style={styles.content}>
           <Text style={styles.name}>{name}</Text>
-          <Text style={styles.rating}>rating: {rating.average}</Text>
+          {rating?.average && (
+            <Text style={styles.rating}>rating: {rating?.average}</Text>
+          )}
         </View>
-      </View>
+      </Pressable>
     </View>
   );
 }
