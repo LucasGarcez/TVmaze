@@ -4,6 +4,8 @@ import {colors} from '../../styles/colors';
 
 export const ScreenTemplate: React.FC<ViewProps> = ({children, ...rest}) => {
   return (
-    <View style={[{backgroundColor: colors.background}, rest]}>{children}</View>
+    <View style={[{backgroundColor: colors.background, flex: 1}, rest]}>
+      {children}
+    </View>
   );
 };
