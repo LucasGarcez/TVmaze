@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, Image, ListRenderItemInfo, Text, View} from 'react-native';
+import {FlatList, ListRenderItemInfo} from 'react-native';
 import {Show} from '../../models/ShowModel';
 import {ShowListItem} from './components/ShowListItem';
 
@@ -14,6 +14,7 @@ export function ShowList({data, isLoading}: ShowListProps) {
 
   return (
     <FlatList
+      contentContainerStyle={{paddingVertical: 16}}
       keyExtractor={item => item.id}
       data={data || []}
       renderItem={renderItem}

@@ -5,11 +5,15 @@ import {Show} from '../../../models/ShowModel';
 import {colors} from '../../../styles/colors';
 import {stylesUtils} from '../../../utils/styleUtils';
 
+const imagePlaceholder = require('../../../assets/images/image-placeholder.png');
+
 export function ShowListItem({image, name, rating}: Show) {
+  console.log(`${name}: ${image?.medium}`);
+  const imageUrl = image?.medium ? {uri: image.medium} : imagePlaceholder;
   return (
     <View style={stylesUtils.shadow}>
       <View style={styles.container}>
-        <Image source={{uri: image.medium}} style={styles.image} />
+        <Image source={imageUrl} style={styles.image} />
 
         <View style={styles.content}>
           <Text style={styles.name}>{name}</Text>
