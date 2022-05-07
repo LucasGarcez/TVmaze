@@ -6,4 +6,10 @@ export interface Show {
     medium: string;
     original: string;
   };
+  rating: {
+    average: number;
+  };
+  genres: string[];
+
+  summary: string;
 }
