@@ -1,3 +1,4 @@
+import {Episode} from '../../models/EpisodeModel';
 import {Show} from '../../models/ShowModel';
 import {api} from '../api';
 
@@ -20,7 +21,13 @@ async function searchByName(searchText: string): Promise<Show[]> {
   return showList;
 }
 
+async function getEpisodes(showId: string): Promise<Episode[]> {
+  const {data} = await api.get<Episode[]>(`shows/${showId}/episodes`);
+  return data;
+}
+
 export const showService = {
   list,
   searchByName,
+  getEpisodes,
 };
