@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 
 import {useQuery} from 'react-query';
@@ -6,14 +6,16 @@ import {DefaultTextInput} from '../../components/DefaultTextInput/DefaultTextInp
 import {ScreenTemplate} from '../../components/ScreenTemplate/ScreenTemplate';
 import {ShowList} from '../../components/ShowList/ShowList';
 import {useDebounce} from '../../hooks/useDebounce';
+import {useInfiniteList} from '../../hooks/useInfiniteList';
 import {QueryKeys} from '../../services/QueryKeys';
 import {showService} from '../../services/show/showService';
 
 export function HomeScreen() {
   const [searchText, setSearchText] = useState('');
   const debouncedValue = useDebounce(searchText);
+  const [isSearch, setIsSearch] = useState(false);
 
-  const listQuery = useQuery([QueryKeys.SHOW_LIST], showService.list);
+  const listQuery = useInfiniteList([QueryKeys.SHOW_LIST], showService.list);
 
   const searchQuery = useQuery(
     [QueryKeys.SHOW_SEARCH, debouncedValue],
@@ -23,6 +25,16 @@ export function HomeScreen() {
       //onSuccess:
     },
   );
+
+  function onEndReached() {
+    if (listQuery.hasNextPage) {
+      listQuery.fetchNextPage({cancelRefetch: true});
+    }
+  }
+
+  useEffect(() => {
+    setIsSearch(debouncedValue.length > 0);
+  }, [debouncedValue]);
 
   return (
     <ScreenTemplate>
@@ -34,7 +46,10 @@ export function HomeScreen() {
         />
       </View>
       <ShowList
-        data={debouncedValue.length > 0 ? searchQuery.data : listQuery.data}
+        isFetchingNextPage={isSearch ? false : listQuery.isFetchingNextPage}
+        onEndReached={isSearch ? undefined : onEndReached}
+        onEndReachedThreshold={0.1}
+        data={isSearch ? searchQuery.data : listQuery.list}
       />
     </ScreenTemplate>
   );

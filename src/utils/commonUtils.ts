@@ -1,5 +1,6 @@
 import {ImageProps} from 'react-native';
-import {ImageBySize} from '../models/CommonModels';
+import {InfiniteData} from 'react-query';
+import {ImageBySize, PageData} from '../models/CommonModels';
 
 const imagePlaceholder = require('../assets/images/image-placeholder.png');
 
@@ -30,7 +31,17 @@ const groupBy = <T>(array: Array<T>, key: keyof T): {[key: string]: T[]} => {
   }, {});
 };
 
+export function getFromInfiniteData<T>(
+  infiniteData?: InfiniteData<PageData<T>>,
+): T[] {
+  if (!infiniteData) return [];
+  return infiniteData.pages.reduce((prev, curr) => {
+    return [...prev, ...curr.data];
+  }, [] as T[]);
+}
+
 export const commonUtils = {
   getImageSource,
   groupBy,
+  getFromInfiniteData,
 };

@@ -12,3 +12,8 @@ export enum DaysOfWeek {
   Saturday = 'Saturday',
   Sunday = 'Sunday',
 }
+
+export interface PageData<T> {
+  data: T[];
+  nextPage: number | null;
+}

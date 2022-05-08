@@ -1,11 +1,22 @@
+import {PageData} from '../../models/CommonModels';
 import {Episode, GroupedEpisodes} from '../../models/EpisodeModel';
 import {Show} from '../../models/ShowModel';
 import {commonUtils} from '../../utils/commonUtils';
 import {api} from '../api';
 
-async function list(): Promise<Show[]> {
-  const {data} = await api.get<Show[]>('shows');
-  return data;
+async function list(page: number): Promise<PageData<Show>> {
+  try {
+    const {data} = await api.get<Show[]>(`shows?page=${page}`);
+    return {
+      data,
+      nextPage: page + 1,
+    };
+  } catch (error) {
+    return {
+      data: [],
+      nextPage: null,
+    };
+  }
 }
 
 interface SearchShowResult {
