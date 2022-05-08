@@ -19,22 +19,19 @@ export const CardImage: React.FC<Props> = ({
   const imageSource = commonUtils.getImageSource(image);
 
   return (
-    <View style={stylesUtils.shadow}>
-      <Pressable onPress={onPress} style={styles.container}>
-        <Image source={imageSource} style={styles.image} />
+    <Pressable onPress={onPress} style={[styles.container, stylesUtils.shadow]}>
+      <Image source={imageSource} style={styles.image} />
 
-        <View style={styles.content}>
-          <Text style={styles.name}>{title}</Text>
-          {children}
-        </View>
-      </Pressable>
-    </View>
+      <View style={styles.content}>
+        <Text style={styles.name}>{title}</Text>
+        {children}
+      </View>
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 0.3,
     flexDirection: 'row',
     marginHorizontal: 16,
     marginBottom: 16,
