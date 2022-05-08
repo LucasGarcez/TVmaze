@@ -5,8 +5,8 @@ import {colors} from '../../../../styles/colors';
 import {commonUtils} from '../../../../utils/commonUtils';
 import {Genres} from '../Genres/Genres';
 
-import RenderHtml from 'react-native-render-html';
 import {Show} from '../../../../models/ShowModel';
+import {RenderHtml} from '../../../../components/RenderHtml/RenderHtml';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
 
@@ -38,11 +38,7 @@ export function ShowInfo({show}: Props) {
         <Text style={styles.timeText}>Time: {show.schedule.time}</Text>
         <Genres genres={show.genres} />
 
-        <RenderHtml
-          baseStyle={{color: colors.onBackground}}
-          contentWidth={200}
-          source={{html: show.summary}}
-        />
+        <RenderHtml html={show.summary} />
       </View>
     </>
   );

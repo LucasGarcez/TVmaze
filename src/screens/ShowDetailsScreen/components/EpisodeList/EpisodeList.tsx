@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useRef, useState} from 'react';
 import {
   View,
@@ -28,18 +29,20 @@ export function EpisodeList({show}: Props) {
   const [selectedSeason, setSelectedSeason] = useState('1');
   const modalizeRef = useRef<Modalize>(null);
 
+  const navigation = useNavigation();
+
   const {data} = useQuery([QueryKeys.EPISODE_LIST, show.id], () =>
     showService.getEpisodes(show.id),
   );
 
-  function navigateToEpisodeDetails() {
-    // navigation.navigate('EpisodeDetails', {show});
+  function navigateToEpisodeDetails(episode: Episode) {
+    navigation.navigate('EpisodeDetails', {episode});
   }
 
   function renderItem({item}: ListRenderItemInfo<Episode>) {
     return (
       <CardImage
-        onPress={navigateToEpisodeDetails}
+        onPress={() => navigateToEpisodeDetails(item)}
         image={item.image}
         title={item.name}>
         <View>
