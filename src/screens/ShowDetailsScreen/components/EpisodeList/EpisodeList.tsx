@@ -18,6 +18,7 @@ import {Show} from '../../../../models/ShowModel';
 import {QueryKeys} from '../../../../services/QueryKeys';
 import {showService} from '../../../../services/show/showService';
 import {colors} from '../../../../styles/colors';
+import {SIZE} from '../../../../utils/constants';
 import {SeasonModal} from '../SeasonModal/SeasonModal';
 import {ShowInfo} from '../ShowInfo/ShowInfo';
 
@@ -96,9 +97,10 @@ export function EpisodeList({show}: Props) {
 
 const styles = StyleSheet.create({
   seasonContainer: {
-    paddingHorizontal: 16,
+    paddingHorizontal: SIZE.padding,
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: SIZE.margin,
   },
   seasonText: {
     fontWeight: 'bold',
@@ -106,7 +108,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   content: {
-    marginTop: 16,
+    marginTop: SIZE.margin,
     flexDirection: 'row',
     alignItems: 'center',
   },
