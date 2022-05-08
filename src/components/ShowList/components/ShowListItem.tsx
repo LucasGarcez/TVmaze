@@ -1,62 +1,38 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {View, Image, Text, StyleSheet, Pressable} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 
 import {Show} from '../../../models/ShowModel';
 import {colors} from '../../../styles/colors';
-import {commonUtils} from '../../../utils/commonUtils';
-import {stylesUtils} from '../../../utils/styleUtils';
+
+import {CardImage} from '../../CardImage/CardImage';
 
 export function ShowListItem(show: Show) {
-  const {image, name, rating} = show;
+  const {rating} = show;
   const navigation = useNavigation();
 
-  const imageSource = commonUtils.getImageSource(image);
-
   function navigateToShowDetails() {
-    //TODO: type check navigation
     navigation.navigate('ShowDetails', {show});
   }
-  return (
-    <View style={stylesUtils.shadow}>
-      <Pressable onPress={navigateToShowDetails} style={styles.container}>
-        <Image source={imageSource} style={styles.image} />
 
-        <View style={styles.content}>
-          <Text style={styles.name}>{name}</Text>
-          {rating?.average && (
-            <Text style={styles.rating}>rating: {rating?.average}</Text>
-          )}
-        </View>
-      </Pressable>
-    </View>
+  return (
+    <CardImage
+      onPress={navigateToShowDetails}
+      image={show.image}
+      title={show.name}>
+      <View style={styles.content}>
+        {rating?.average && (
+          <Text style={styles.rating}>rating: {rating?.average}</Text>
+        )}
+      </View>
+    </CardImage>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    borderWidth: 0.3,
-    flexDirection: 'row',
-    marginHorizontal: 16,
-    marginBottom: 16,
-    maxHeight: 150,
-    borderRadius: 16,
-    backgroundColor: colors.secondary,
-  },
   content: {
     flex: 1,
     padding: 8,
-  },
-  image: {
-    width: 150,
-    height: 150,
-    borderTopLeftRadius: 16,
-    borderBottomLeftRadius: 16,
-  },
-  name: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    color: colors.light,
   },
   rating: {
     color: colors.onBackground,

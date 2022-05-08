@@ -1,9 +1,17 @@
 import React, {useRef, useState} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ListRenderItemInfo,
+} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import {Modalize} from 'react-native-modalize';
 import {useQuery} from 'react-query';
+import {CardImage} from '../../../../components/CardImage/CardImage';
 import {ImageIcon} from '../../../../components/ImageIcon/ImageIcon';
+import {Episode} from '../../../../models/EpisodeModel';
 
 import {Show} from '../../../../models/ShowModel';
 import {QueryKeys} from '../../../../services/QueryKeys';
@@ -24,8 +32,21 @@ export function EpisodeList({show}: Props) {
     showService.getEpisodes(show.id),
   );
 
-  function renderItem({item}) {
-    return <Text style={{color: '#FFF', padding: 16}}>{item.name}</Text>;
+  function navigateToEpisodeDetails() {
+    // navigation.navigate('EpisodeDetails', {show});
+  }
+
+  function renderItem({item}: ListRenderItemInfo<Episode>) {
+    return (
+      <CardImage
+        onPress={navigateToEpisodeDetails}
+        image={item.image}
+        title={item.name}>
+        <View>
+          <Text>runtime: {item.runtime}</Text>
+        </View>
+      </CardImage>
+    );
   }
 
   function openModal() {
