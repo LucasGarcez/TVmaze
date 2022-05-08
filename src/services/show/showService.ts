@@ -1,5 +1,6 @@
-import {Episode} from '../../models/EpisodeModel';
+import {Episode, GroupedEpisodes} from '../../models/EpisodeModel';
 import {Show} from '../../models/ShowModel';
+import {commonUtils} from '../../utils/commonUtils';
 import {api} from '../api';
 
 async function list(): Promise<Show[]> {
@@ -21,9 +22,13 @@ async function searchByName(searchText: string): Promise<Show[]> {
   return showList;
 }
 
-async function getEpisodes(showId: string): Promise<Episode[]> {
+async function getEpisodes(showId: string): Promise<GroupedEpisodes> {
   const {data} = await api.get<Episode[]>(`shows/${showId}/episodes`);
-  return data;
+
+  const seasons = commonUtils.groupBy(data, 'season');
+  const seasonNames = Object.keys(seasons);
+
+  return {seasonNames, seasons};
 }
 
 export const showService = {

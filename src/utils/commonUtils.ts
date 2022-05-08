@@ -20,6 +20,17 @@ function getImageSource(
   return imagePlaceholder;
 }
 
+const groupBy = <T>(array: Array<T>, key: keyof T): {[key: string]: T[]} => {
+  return array.reduce((result, currentValue) => {
+    (result[currentValue[key]] = result[currentValue[key]] || []).push(
+      currentValue,
+    );
+
+    return result;
+  }, {});
+};
+
 export const commonUtils = {
   getImageSource,
+  groupBy,
 };
