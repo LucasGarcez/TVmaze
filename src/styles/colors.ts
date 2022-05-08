@@ -4,4 +4,5 @@ export const colors = {
   background: '#1F1D47',
   light: '#E0D9FF',
   onBackground: '#FFF',
+  gold: '#FFD700',
 };

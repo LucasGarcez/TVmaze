@@ -22,6 +22,7 @@ import {SeasonModal} from '../SeasonModal/SeasonModal';
 import {ShowInfo} from '../ShowInfo/ShowInfo';
 
 const arrowDownIcon = require('../../../../assets/images/arrow-down.png');
+const starIcon = require('../../../../assets/images/star.png');
 type Props = {
   show: Show;
 };
@@ -45,9 +46,12 @@ export function EpisodeList({show}: Props) {
         onPress={() => navigateToEpisodeDetails(item)}
         image={item.image}
         title={item.name}>
-        <View>
-          <Text>runtime: {item.runtime}</Text>
-        </View>
+        {item.rating.average && (
+          <View style={styles.content}>
+            <ImageIcon color={colors.gold} source={starIcon} />
+            <Text style={styles.ratingText}> {item.rating?.average}</Text>
+          </View>
+        )}
       </CardImage>
     );
   }
@@ -98,6 +102,15 @@ const styles = StyleSheet.create({
   },
   seasonText: {
     fontWeight: 'bold',
+    color: colors.onBackground,
+    fontSize: 20,
+  },
+  content: {
+    marginTop: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  ratingText: {
     color: colors.onBackground,
     fontSize: 20,
   },
