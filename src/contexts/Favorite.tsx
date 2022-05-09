@@ -55,7 +55,13 @@ export const FavoriteProvider: React.FC = ({children}) => {
   }
 
   function updateShowList(list: FavoriteList) {
-    setShowList(Object.values(list));
+    setShowList(
+      Object.values(list).sort((a, b) => {
+        if (a.name > b.name) return 1;
+        if (a.name < b.name) return -1;
+        return 0;
+      }),
+    );
   }
   function addFavorite(show: Show) {
     setFavoriteList(prev => {
