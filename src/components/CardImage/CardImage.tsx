@@ -23,7 +23,9 @@ export const CardImage: React.FC<Props> = ({
       <Image source={imageSource} style={styles.image} />
 
       <View style={styles.content}>
-        <Text style={styles.name}>{title}</Text>
+        <Text numberOfLines={4} style={styles.name}>
+          {title}
+        </Text>
         {children}
       </View>
     </Pressable>
