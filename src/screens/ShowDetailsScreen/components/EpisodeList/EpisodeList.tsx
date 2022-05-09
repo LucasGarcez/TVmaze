@@ -77,11 +77,12 @@ export function EpisodeList({show}: Props) {
       </View>
     );
   }
+
   return (
     <>
       <FlatList
         contentContainerStyle={{paddingBottom: 16}}
-        ListHeaderComponent={Header}
+        ListHeaderComponent={() => <Header />}
         data={data ? data.seasons[selectedSeason] : []}
         renderItem={renderItem}
       />

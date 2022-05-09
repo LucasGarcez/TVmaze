@@ -7,7 +7,7 @@ import {SIZE} from '../../utils/constants';
 interface Props {
   html: string;
 }
-export function RenderHtml({html}: Props) {
+export function RenderHtmlComponent({html}: Props) {
   const {width} = useWindowDimensions();
   const CONTENT_WIDTH = width - SIZE.padding * 2;
   return (
@@ -18,3 +18,5 @@ export function RenderHtml({html}: Props) {
     />
   );
 }
+
+export const RenderHtml = React.memo(RenderHtmlComponent);

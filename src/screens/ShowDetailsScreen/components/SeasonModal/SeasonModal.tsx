@@ -24,7 +24,10 @@ export const SeasonModal = React.forwardRef<Modalize, Props>(
         ref={ref}>
         <View style={styles.container}>
           {seasons.map(season => (
-            <Text onPress={() => handleSelect(season)} style={styles.season}>
+            <Text
+              key={season}
+              onPress={() => handleSelect(season)}
+              style={styles.season}>
               Season {season}
             </Text>
           ))}
