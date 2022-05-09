@@ -45,6 +45,7 @@ export function ShowInfo({show}: Props) {
 
 const styles = StyleSheet.create({
   title: {
+    flex: 1,
     fontSize: 32,
     fontWeight: 'bold',
     color: colors.primary,
