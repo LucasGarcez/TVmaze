@@ -27,11 +27,7 @@ export function ShowInfo({show}: Props) {
   const imageSource = commonUtils.getImageSource(show.image, 'original');
   return (
     <>
-      <Image
-        source={imageSource}
-        resizeMode="cover"
-        style={{width: COVER_WIDTH, height: COVER_HEIGHT}}
-      />
+      <Image source={imageSource} resizeMode="cover" style={styles.cover} />
       <View style={styles.content}>
         <Text style={styles.title}>{show.name}</Text>
         <DaysOfWeekIndicator days={show.schedule.days} />
@@ -59,5 +55,11 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 16,
+  },
+  cover: {
+    width: COVER_WIDTH,
+    height: COVER_HEIGHT,
+    borderBottomLeftRadius: 16,
+    borderBottomRightRadius: 16,
   },
 });
