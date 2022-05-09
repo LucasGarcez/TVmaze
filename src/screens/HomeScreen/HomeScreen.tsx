@@ -22,7 +22,6 @@ export function HomeScreen() {
     () => showService.searchByName(debouncedValue),
     {
       enabled: debouncedValue.length > 0,
-      //onSuccess:
     },
   );
 
