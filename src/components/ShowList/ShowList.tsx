@@ -1,24 +1,23 @@
 import React from 'react';
 import {FlatList, FlatListProps, ListRenderItemInfo, Text} from 'react-native';
 import {Show} from '../../models/ShowModel';
-import {colors} from '../../styles/colors';
 import {LoadingIndicator} from '../LoadingIndicator/LoadingIndicator';
 import {ShowListItem} from './components/ShowListItem';
 
 interface ShowListProps {
   data?: Show[];
-  // isLoading: boolean;
+
   onEndReached?: FlatListProps<Show>['onEndReached'];
   onEndReachedThreshold?: FlatListProps<Show>['onEndReachedThreshold'];
-  isFetchingNextPage: boolean;
+  isFetchingNextPage?: boolean;
 }
 export function ShowList({
   data,
   onEndReached,
   onEndReachedThreshold,
-  isFetchingNextPage,
+  isFetchingNextPage = false,
 }: ShowListProps) {
-  function renderItem({item, index}: ListRenderItemInfo<Show>) {
+  function renderItem({item}: ListRenderItemInfo<Show>) {
     return <ShowListItem {...item} />;
   }
 

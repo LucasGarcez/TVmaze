@@ -7,9 +7,9 @@ import {Genres} from '../Genres/Genres';
 
 import {Show} from '../../../../models/ShowModel';
 import {RenderHtml} from '../../../../components/RenderHtml/RenderHtml';
+import {FavoriteButton} from '../FavoriteButton/FavoriteButton';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
-
 const coverOriginalDimensions = {
   width: 210,
   height: 295,
@@ -29,7 +29,10 @@ export function ShowInfo({show}: Props) {
     <>
       <Image source={imageSource} resizeMode="cover" style={styles.cover} />
       <View style={styles.content}>
-        <Text style={styles.title}>{show.name}</Text>
+        <View style={styles.header}>
+          <Text style={styles.title}>{show.name}</Text>
+          <FavoriteButton show={show} />
+        </View>
         <DaysOfWeekIndicator days={show.schedule.days} />
         <Text style={styles.timeText}>Time: {show.schedule.time}</Text>
         <Genres genres={show.genres} />
@@ -45,7 +48,6 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: 'bold',
     color: colors.primary,
-    marginBottom: 16,
   },
   timeText: {
     fontSize: 18,
@@ -55,6 +57,12 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 16,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 16,
   },
   cover: {
     width: COVER_WIDTH,

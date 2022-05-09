@@ -48,6 +48,7 @@ export function DaysOfWeekIndicator({days}: Props) {
         const check = days.includes(day.value);
         return (
           <View
+            key={day.value}
             style={[
               {
                 backgroundColor: check ? colors.primary : colors.secondary,

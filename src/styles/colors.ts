@@ -5,4 +5,5 @@ export const colors = {
   light: '#E0D9FF',
   onBackground: '#FFF',
   gold: '#FFD700',
+  red: '#D32F2F',
 };

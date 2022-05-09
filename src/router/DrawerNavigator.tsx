@@ -3,6 +3,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {shade} from 'polished';
 import {HomeScreen} from '../screens/HomeScreen/HomeScreen';
 import {colors} from '../styles/colors';
+import {FavoriteScreen} from '../screens/FavoriteScreen/FavoriteScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -23,6 +24,7 @@ export function DrawerNavigator() {
       }}
       initialRouteName="TVmaze">
       <Drawer.Screen name="Home" component={HomeScreen} />
+      <Drawer.Screen name="Favorite" component={FavoriteScreen} />
     </Drawer.Navigator>
   );
 }
