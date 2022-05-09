@@ -12,6 +12,7 @@ import {Modalize} from 'react-native-modalize';
 import {useQuery} from 'react-query';
 import {CardImage} from '../../../../components/CardImage/CardImage';
 import {ImageIcon} from '../../../../components/ImageIcon/ImageIcon';
+import {StarRating} from '../../../../components/StarRating/StarRating';
 import {Episode} from '../../../../models/EpisodeModel';
 
 import {Show} from '../../../../models/ShowModel';
@@ -47,12 +48,9 @@ export function EpisodeList({show}: Props) {
         onPress={() => navigateToEpisodeDetails(item)}
         image={item.image}
         title={item.name}>
-        {item.rating.average && (
-          <View style={styles.content}>
-            <ImageIcon color={colors.gold} source={starIcon} />
-            <Text style={styles.ratingText}> {item.rating?.average}</Text>
-          </View>
-        )}
+        <View style={styles.content}>
+          <StarRating rating={item.rating} />
+        </View>
       </CardImage>
     );
   }

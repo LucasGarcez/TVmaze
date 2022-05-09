@@ -13,6 +13,10 @@ export enum DaysOfWeek {
   Sunday = 'Sunday',
 }
 
+export interface Rating {
+  average?: number;
+}
+
 export interface PageData<T> {
   data: T[];
   nextPage: number | null;

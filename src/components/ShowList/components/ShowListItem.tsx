@@ -6,9 +6,9 @@ import {Show} from '../../../models/ShowModel';
 import {colors} from '../../../styles/colors';
 
 import {CardImage} from '../../CardImage/CardImage';
+import {StarRating} from '../../StarRating/StarRating';
 
 export function ShowListItem(show: Show) {
-  const {rating} = show;
   const navigation = useNavigation();
 
   function navigateToShowDetails() {
@@ -21,9 +21,12 @@ export function ShowListItem(show: Show) {
       image={show.image}
       title={show.name}>
       <View style={styles.content}>
-        {rating?.average && (
-          <Text style={styles.rating}>rating: {rating?.average}</Text>
-        )}
+        <StarRating rating={show.rating} />
+        <Text style={styles.typeText}>Type: {show.type}</Text>
+        <Text style={styles.statusText}>
+          <Text>Status: {show.status}</Text>
+          {show.ended && <Text> ({show.ended})</Text>}
+        </Text>
       </View>
     </CardImage>
   );
@@ -32,11 +35,15 @@ export function ShowListItem(show: Show) {
 const styles = StyleSheet.create({
   content: {
     flex: 1,
-    padding: 8,
+    paddingVertical: 8,
   },
-  rating: {
-    color: colors.onBackground,
+  typeText: {
     fontSize: 16,
-    marginTop: 8,
+    color: colors.onBackground,
+    marginBottom: 4,
+  },
+  statusText: {
+    fontSize: 14,
+    color: colors.light,
   },
 });

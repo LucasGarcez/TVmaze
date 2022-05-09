@@ -12,7 +12,7 @@ import {showService} from '../../services/show/showService';
 
 export function HomeScreen() {
   const [searchText, setSearchText] = useState('');
-  const debouncedValue = useDebounce(searchText);
+  const debouncedValue = useDebounce(searchText, 600);
   const [isSearch, setIsSearch] = useState(false);
 
   const listQuery = useInfiniteList([QueryKeys.SHOW_LIST], showService.list);
