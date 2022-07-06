@@ -6,8 +6,8 @@ import {
   TouchableOpacity,
   StyleSheet,
   ListRenderItemInfo,
+  FlatList,
 } from 'react-native';
-import {FlatList} from 'react-native-gesture-handler';
 import {Modalize} from 'react-native-modalize';
 import {useQuery} from 'react-query';
 import {CardImage} from '../../../../components/CardImage/CardImage';
@@ -24,7 +24,6 @@ import {SeasonModal} from '../SeasonModal/SeasonModal';
 import {ShowInfo} from '../ShowInfo/ShowInfo';
 
 const arrowDownIcon = require('../../../../assets/images/arrow-down.png');
-const starIcon = require('../../../../assets/images/star.png');
 type Props = {
   show: Show;
 };
