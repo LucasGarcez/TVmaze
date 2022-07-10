@@ -10,7 +10,7 @@ export interface Episode {
   airstamp: string;
   runtime: number;
   rating: {
-    average: number;
+    average: number | null;
   };
   image: {
     medium: string;
