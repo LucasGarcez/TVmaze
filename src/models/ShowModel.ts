@@ -1,7 +1,7 @@
 import {DaysOfWeek, ImageBySize, Rating} from './CommonModels';
 
 export interface Show {
-  id: string;
+  id: number;
   url: string;
   name: string;
   image: ImageBySize | null;
