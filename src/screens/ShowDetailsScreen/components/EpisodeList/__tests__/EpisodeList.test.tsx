@@ -1,20 +1,9 @@
-import {render, waitFor} from '@testing-library/react-native';
 import React from 'react';
-import {QueryClient, QueryClientProvider} from 'react-query';
+import {render} from 'test-utils';
 import {showService} from '../../../../../services/show/showService';
 import {EpisodeList} from '../EpisodeList';
 import {mocks} from './mocks';
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      cacheTime: Infinity,
-    },
-  },
-});
-const wrapper = ({children}) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
 describe('EpisodeList', () => {
   test('show all season one episodes at first', async () => {
     jest.spyOn(showService, 'getEpisodes').mockResolvedValueOnce({
@@ -24,9 +13,7 @@ describe('EpisodeList', () => {
         2: [mocks.episode22, mocks.episode23],
       },
     });
-    const {getByText, findByText} = render(<EpisodeList show={mocks.show} />, {
-      wrapper,
-    });
+    const {getByText, findByText} = render(<EpisodeList show={mocks.show} />);
 
     await findByText(mocks.episode1.name);
 
