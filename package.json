@@ -38,10 +38,12 @@
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",
     "babel-jest": "^26.6.3",
+    "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "^7.32.0",
     "eslint-plugin-jest": "^26.6.0",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.67.0",
+    "msw": "^0.44.2",
     "react-test-renderer": "17.0.2",
     "typescript": "^4.4.4"
   },
@@ -54,7 +56,8 @@
       "./jestSetupFile.js"
     ],
     "setupFilesAfterEnv": [
-      "@testing-library/jest-native/extend-expect"
+      "@testing-library/jest-native/extend-expect",
+      "./test/setup-env.js"
     ],
     "moduleDirectories": [
       "node_modules",
