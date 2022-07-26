@@ -13,6 +13,6 @@ describe('StarRating', () => {
   it('the component rendered', () => {
     // forma de renderizar o componente
     const {debug} = render(<StarRating rating={{average: 7}} />);
-    debug();
+    debug(); // ver como o componente está escrito
   });
 });
