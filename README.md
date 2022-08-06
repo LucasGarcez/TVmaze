@@ -1,53 +1,98 @@
-# React Native TVMaze App
+# Aprendendo a utilizar testes
 
-This is a React Native App to show information about TV series. The data are fetch from [TVMaze API](https://www.tvmaze.com/api).
+- [Documentação react native test library](https://callstack.github.io/react-native-testing-library/docs/getting-started)
 
-### Setup Environment
+- [Documentação do jest](https://jestjs.io/pt-BR/docs/getting-started)
 
-Project created with React Native CLI.[ See official docs](https://reactnative.dev/docs/environment-setup) to set up the environment.
+### Configuração
 
-### Run
+- [Extensão para facilitar executar teste](https://marketplace.visualstudio.com/items?itemName=firsttris.vscode-jest-runner).
 
-**Install dependencies**
+* Libs que precisa ser instaladas.
 
-```
-yarn
-```
-
-**Install IOS Pods**
+```sh
+- yarn add --dev @testing-library/react-native
+- yarn add --dev @testing-library/jest-native
 
 ```
-cd ios && pod install
+
+### configurando o packahe.json
+
+- Antes de configurar
+
+```json
+"jest": {
+    "preset": "react-native",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
 ```
 
-**Run IOS**
+- Depois de configurar
 
 ```
-yarn ios
+"jest": {
+    "preset": "react-native",
+    "setupFilesAfterEnv": ["@testing-library/jest-native/extend-expect"],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+
 ```
 
-**Run Android**
+### Comando para rodar os testes
+
+### Criando testes
+
+1.0 - Arquivos que vão ser renderizados como testes.
+
+- teste.spec.tsx
+- teste.test.tsx
+
+  2.0 - Criando um teste.
+
+```sh
+yarn test --testPathPattern=the comp
+
+> --testPathPattern= = flag infornando que e para rodar apenas um teste por vez.
+> 'the comp' = nome do teste a ser rodado.
+```
+
+2.1 - Estrutura para criar um teste
+
+```javascript
 
 ```
-yarn android
+
+```javascript
+// como estamos trabalhando com componenetes precisamos do 'React'
+import React from 'react';
+
+// lib que vai rendenrizar o componente
+import {render} from '@testing-library/react-native';
+
+// componente importado que vai ser renderizado
+import {StarRating} from './StarRating';
+
+// describe - criar um conjunto de teste relacionados
+describe('StarRating', () => {
+  // forma de criar um teste
+  it('the component rendered', () => {
+    // forma de renderizar o componente
+    const {debug} = render(<StarRating rating={{average: 7}} />);
+    debug();
+  });
+});
 ```
-
-### 🛠 Tech and Libraries
-
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [React Navigation](https://reactnavigation.org/): Routing and navigation
-- [Async Storage](https://react-native-async-storage.github.io/async-storage/): Data storage system
-- [Axios](https://github.com/axios/axios): Promise based HTTP client
-- [React Query](https://react-query.tanstack.com/): Fetching, caching, synchronizing and updating server state
-
-### App Screenshots
-
-|                 |                   Android                    |                   IOS                    |
-| :-------------: | :------------------------------------------: | :--------------------------------------: |
-|   Home Screen   |   ![](docs/images/android/home-screen.png)   |   ![](docs/images/ios/home-screen.png)   |
-| Favorite Screen | ![](docs/images/android/favorite-screen.png) | ![](docs/images/ios/favorite-screen.png) |
-|  Show Details   |  ![](docs/images/android/show-details.png)   |  ![](docs/images/ios/show-details.png)   |
-|  Show Seasons   |   ![](docs/images/android/show-season.png)   |   ![](docs/images/ios/show-season.png)   |
-| Episode Details | ![](docs/images/android/episode-details.png) | ![](docs/images/ios/episode-details.png) |
-|   Drawer Menu   |   ![](docs/images/android/drawer-menu.png)   |   ![](docs/images/ios/drawer-menu.png)   |
