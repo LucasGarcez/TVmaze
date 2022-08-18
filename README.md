@@ -61,7 +61,7 @@
 - teste.spec.tsx
 - teste.test.tsx
 
-  2.0 - Criando um teste.
+2.0 - Criando um teste.
 
 ```sh
 yarn test --testPathPattern=the comp
