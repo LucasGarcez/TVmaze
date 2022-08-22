@@ -21,7 +21,7 @@ yarn add --dev @testing-library/react-native
 yarn add --dev @testing-library/jest-native
 ```
 
-### configurando o packahe.json
+## Configurando o packahe.json
 
 - Antes de configurar
 
@@ -57,29 +57,17 @@ yarn add --dev @testing-library/jest-native
 
 ```
 
-### Comando para rodar os testes
+## Comando para rodar os testes
 
-### Criando testes
+### Criando o primeiro testes - nomeclatura do arquivo
 
-1.0 - Arquivos que vão ser renderizados como testes.
+1.0 - Arquivos que vão ser renderizados como testes devem seguir a estrutura abaixo.
 
 - teste.spec.tsx
 - teste.test.tsx
 
-2.0 - Criando um teste.
+2.0 - Estrutura para criar um teste
 
-```sh
-yarn test --testPathPattern=the comp
-
-> --testPathPattern= = flag infornando que e para rodar apenas um teste por vez.
-> 'the comp' = nome do teste a ser rodado.
-```
-
-2.1 - Estrutura para criar um teste
-
-```javascript
-
-```
 
 ```javascript
 // como estamos trabalhando com componenetes precisamos do 'React'
@@ -100,4 +88,15 @@ describe('StarRating', () => {
     debug();
   });
 });
+```
+
+
+
+2.1 - Executando um teste.
+
+```sh
+yarn test --testPathPattern=the comp
+
+> --testPathPattern= = flag infornando que e para rodar apenas um teste por vez.
+> 'the comp' = nome do teste a ser rodado.
 ```
