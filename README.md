@@ -8,12 +8,17 @@
 
 - [Extensão para facilitar executar teste](https://marketplace.visualstudio.com/items?itemName=firsttris.vscode-jest-runner).
 
-* Libs que precisa ser instaladas.
+## Libs que já vem instaladas ao projeto (Verificar no package.json).
+
+- jest
+- react-test-renderer
+
+
+## Libs que precisa ser instaladas.
 
 ```sh
-- yarn add --dev @testing-library/react-native
-- yarn add --dev @testing-library/jest-native
-
+yarn add --dev @testing-library/react-native
+yarn add --dev @testing-library/jest-native
 ```
 
 ### configurando o packahe.json
