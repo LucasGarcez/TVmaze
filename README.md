@@ -4,9 +4,9 @@
 
 - [Documentação do jest](https://jestjs.io/pt-BR/docs/getting-started)
 
-### Configuração
+## Configuração
 
-- [Extensão para facilitar executar teste](https://marketplace.visualstudio.com/items?itemName=firsttris.vscode-jest-runner).
+- [Extensão do vscode para facilitar executar teste](https://marketplace.visualstudio.com/items?itemName=firsttris.vscode-jest-runner).
 
 ## Libs que já vem instaladas ao projeto (Verificar no package.json).
 
@@ -65,6 +65,14 @@ yarn add --dev @testing-library/jest-native
 
 - teste.spec.tsx
 - teste.test.tsx
+
+1.1 - Podemos centralizar também os teste em uma pasta como descrito abaixo. Toda vez quando roda o teste ele vai procurar primeiramente a pasta __test__
+
+```
+__test__
+    teste.spec.tsx
+    teste.test.tsx
+```
 
 2.0 - Estrutura para criar um teste
 
