@@ -1,4 +1,4 @@
-import {device, element, by} from 'detox';
+import {device, element, by, waitFor} from 'detox';
 describe('Favorite', () => {
   beforeAll(async () => {
     await device.launchApp();
@@ -20,6 +20,29 @@ describe('Favorite', () => {
     await element(by.id('favorite-button')).tap();
 
     // 4. VERIFICAR se o coração ficou vermelho
+    await expect(element(by.id('heart-icon-true'))).toBeVisible();
+  });
+
+  it('Should favorite the first bad TV Show (star < 5)', async () => {
+    // 1.
+    const starRatingBad = by.id('star-rating-bad');
+
+    const list = by.id('show-list');
+
+    await waitFor(element(starRatingBad).atIndex(0))
+      .toBeVisible()
+      .whileElement(list)
+      .scroll(300, 'down', 0.5, 0.5);
+
+    await element(starRatingBad).atIndex(0).tap();
+
+    await element(by.id('favorite-button'))
+      .tap()
+      .catch(async () => {
+        await element(starRatingBad).atIndex(0).tap();
+        await element(by.id('favorite-button')).tap();
+      });
+
     await expect(element(by.id('heart-icon-true'))).toBeVisible();
   });
 });

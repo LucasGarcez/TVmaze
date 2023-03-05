@@ -65,7 +65,8 @@
       "./test"
     ],
     "modulePathIgnorePatterns": [
-      "mocks"
+      "mocks",
+      "e2e/"
     ],
     "moduleFileExtensions": [
       "ts",

@@ -23,6 +23,7 @@ export function ShowList({
 
   return (
     <FlatList
+      testID="show-list"
       ListFooterComponent={<LoadingIndicator isLoading={isFetchingNextPage} />}
       contentContainerStyle={{paddingVertical: 16}}
       keyExtractor={item => item.id}

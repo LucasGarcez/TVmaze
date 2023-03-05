@@ -16,7 +16,9 @@ export function StarRating({rating}: Props) {
   }
 
   return (
-    <View style={styles.content}>
+    <View
+      testID={`star-rating-${rating.average < 5 ? 'bad' : 'good'}`}
+      style={styles.content}>
       <ImageIcon testID="starIcon" color={colors.gold} source={starIcon} />
       <Text style={styles.ratingText}> {rating.average}</Text>
     </View>
