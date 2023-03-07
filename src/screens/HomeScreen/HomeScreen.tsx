@@ -39,6 +39,7 @@ export function HomeScreen() {
     <ScreenTemplate>
       <View style={styles.inputContainer}>
         <DefaultTextInput
+          testID="search-input"
           placeholder="Search show by name"
           value={searchText}
           onChangeText={setSearchText}
