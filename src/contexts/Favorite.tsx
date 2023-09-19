@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {storageService} from 'src/services/storage/storageService';
 
 import {Show} from '../models/ShowModel';
 
@@ -36,9 +36,8 @@ export const FavoriteProvider: React.FC = ({children}) => {
 
   async function loadData() {
     try {
-      const stringifiedList = await AsyncStorage.getItem(SHOW_LIST_KEY);
-      if (stringifiedList) {
-        const list = JSON.parse(stringifiedList);
+      const list = await storageService.getItem<FavoriteList>(SHOW_LIST_KEY);
+      if (list) {
         setFavoriteList(list);
       }
     } catch (error) {
@@ -48,8 +47,7 @@ export const FavoriteProvider: React.FC = ({children}) => {
 
   async function updateStorage(list: FavoriteList) {
     try {
-      const stringifiedList = JSON.stringify(list);
-      AsyncStorage.setItem(SHOW_LIST_KEY, stringifiedList);
+      storageService.setItem(SHOW_LIST_KEY, list);
     } catch (error) {}
     //handle error
   }
